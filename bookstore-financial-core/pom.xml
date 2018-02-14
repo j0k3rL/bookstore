@@ -9,4 +9,19 @@
   <artifactId>bookstore-financial-core</artifactId>
   <packaging>jar</packaging>
   <name>Bookstore Financial Core</name>
+  
+  <properties>
+    <org.hibernate.version>1.0.1.Final</org.hibernate.version>
+  </properties>
+  
+  <dependencies>
+  
+	  <dependency>
+	    <groupId>org.hibernate.javax.persistence</groupId>
+	    <artifactId>hibernate-jpa-2.0-api</artifactId>
+	    <version>${org.hibernate.version}</version>
+	    <scope>provided</scope>
+	  </dependency>
+  
+  </dependencies>
 </project>
