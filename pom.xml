@@ -5,40 +5,48 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Bookstore Financial</name>
-  
-  <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-  </properties>
 
   <modules>
 	<module>bookstore-financial-core</module>
 	<module>bookstore-financial-ws</module>
   </modules>
   
+  <properties>
+    <bookstore.libraries.version>1.0.0-SNAPSHOT</bookstore.libraries.version>
+    <javax.ejb.version>3.0</javax.ejb.version>
+    <jboss.weld.version>2.3.3.Final</jboss.weld.version>
+    <javax.transaction.version>1.1</javax.transaction.version>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
   <dependencies>
+  	<dependency>
+		<groupId>com.bookstore.libraries</groupId>
+		<artifactId>bookstore-libraries</artifactId>
+		<version>${bookstore.libraries.version}</version>
+	</dependency>
   
 	<dependency>
 		<groupId>javax.ejb</groupId>
 		<artifactId>ejb-api</artifactId>
-		<version>3.0</version>
+		<version>${javax.ejb.version}</version>
 		<scope>provided</scope>
 	</dependency>
 	
 	<dependency>
     	<groupId>org.jboss.weld</groupId>
     	<artifactId>weld-core</artifactId>
-    	<version>2.3.3.Final</version>
+    	<version>${jboss.weld.version}</version>
     	<scope>provided</scope>
 	</dependency>
 	
 	<dependency>
 	    <groupId>javax.transaction</groupId>
 	    <artifactId>jta</artifactId>
-	    <version>1.1</version>
+	    <version>${javax.transaction.version}</version>
 	    <scope>provided</scope>
 	</dependency>
-	
   </dependencies>
   
   <build>
@@ -54,5 +62,4 @@
       </plugin>
     </plugins>
   </build>
-  
 </project>

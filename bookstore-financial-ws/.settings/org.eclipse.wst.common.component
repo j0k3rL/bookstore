@@ -7,6 +7,9 @@
         <dependent-module archiveName="bookstore-financial-core-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/bookstore-financial-core/bookstore-financial-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="bookstore-libraries-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/bookstore-libraries/bookstore-libraries">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="bookstore-financial-ws"/>
         <property name="java-output-path" value="/bookstore-financial-ws/target/classes"/>
     </wb-module>
