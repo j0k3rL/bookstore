@@ -29,7 +29,7 @@ public class Payment extends AbstractEntity {
 	private Unit unit;
 	
 	@Column
-	private List<Product> product;
+	private List<Product> products;
 	
 	@Column
 	private Date date;
@@ -87,17 +87,17 @@ public class Payment extends AbstractEntity {
 	}
 
 	/**
-	 * @return the product
+	 * @return the products
 	 */
-	public List<Product> getProduct() {
-		return product;
+	public List<Product> getProducts() {
+		return products;
 	}
 
 	/**
-	 * @param product the product to set
+	 * @param products the products to set
 	 */
-	public void setProduct(List<Product> product) {
-		this.product = product;
+	public void setProduct(List<Product> products) {
+		this.products = products;
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class Payment extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		return "Payment [code=" + code + ", customer=" + customer + ", unit=" + unit + ", product=" + product
+		return "Payment [code=" + code + ", customer=" + customer + ", unit=" + unit + ", products=" + products
 				+ ", date=" + date + ", value=" + value + ", type=" + type + ", invoice=" + invoice + "]";
 	}
 }
