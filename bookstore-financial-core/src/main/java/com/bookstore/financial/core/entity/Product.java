@@ -1,24 +1,20 @@
 package com.bookstore.financial.core.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Lob;
 
 import com.bookstore.libraries.jpa.AbstractEntity;
 
 @Entity
-@Table
 public class Product extends AbstractEntity {
 
 	private static final long serialVersionUID = 752734198576111568L;
 
-	@Column
 	private String code;
 	
-	@Column
 	private String name;
 	
-	@Column
+	@Lob
 	private String description;
 
 	/**

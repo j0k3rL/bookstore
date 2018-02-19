@@ -1,47 +1,43 @@
 package com.bookstore.financial.core.entity;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.bookstore.financial.core.enumeration.PaymentType;
 import com.bookstore.libraries.jpa.AbstractEntity;
 
 @Entity
-@Table
 public class Payment extends AbstractEntity {
 
 	private static final long serialVersionUID = 5057123697187222044L;
 
-	@Column
 	private String code;
 	
-	@Column
 	private Customer customer;
 	
-	@Column
 	private Unit unit;
 	
-	@Column
+	@ManyToMany
 	private List<Product> products;
 	
-	@Column
-	private Date date;
+	@Temporal(TemporalType.DATE)
+	private Calendar date;
 	
-	@Column
 	private BigDecimal value;
 	
-	@Column
 	@Enumerated(EnumType.STRING)
 	private PaymentType type;
 	
-	@Column
+	@OneToOne
 	private Invoice invoice;
 
 	/**
@@ -103,14 +99,14 @@ public class Payment extends AbstractEntity {
 	/**
 	 * @return the date
 	 */
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 
