@@ -22,7 +22,6 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>com.bookstore.libraries</groupId>
 			<artifactId>bookstore-libraries</artifactId>
@@ -40,8 +39,8 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
+			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>

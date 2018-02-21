@@ -18,14 +18,12 @@ public class UnitService extends AbstractService {
 
 	@Inject
 	private UnitDAO unitDAO;
-	
+
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public List<Unit> listAll() throws BusinessException {
-		
+
 		try {
-			
 			return (List<Unit>) unitDAO.listAll();
-		
 		} catch (DAOException e) {
 			throw new BusinessException(e);
 		}
