@@ -2,24 +2,20 @@ package com.bookstore.financial.ws.service;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import com.bookstore.financial.core.service.UnitService;
-import com.bookstore.libraries.exception.BusinessException;
+import com.bookstore.financial.core.service.PaymentService;
+import com.bookstore.financial.ws.dto.PaymentDTO;
 
-@WebService
+@WebService(targetNamespace="http://bookstore-financial.com/paymentws/v1")
 public class PaymentWS {
 
 	@Inject
-	private UnitService unitService;
+	private PaymentService paymentService;
 	
-	@WebMethod
-	public void testService() {
-		try {
-			unitService.listAll();
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@WebMethod(operationName="registerPayment")
+	public void doRegister(@WebParam(name="payment")PaymentDTO payment) {
+		
 	}
 }
