@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="customerDTO" type="customerDTO"/>
+  <xs:element name="payment" type="paymentDTO"/>
+
+  <xs:complexType name="paymentWS">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="paymentDTO">
+    <xs:complexContent>
+      <xs:extension base="abstractDTO">
+        <xs:sequence>
+          <xs:element name="Type" type="paymentType"/>
+          <xs:element name="Value" type="xs:decimal"/>
+          <xs:element name="Date" type="xs:string" minOccurs="0"/>
+          <xs:element name="Products">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Code" type="xs:string" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="UnitCode" type="xs:string"/>
+          <xs:element name="Customer" type="customerDTO"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="abstractDTO" abstract="true">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="customerDTO">
+    <xs:complexContent>
+      <xs:extension base="abstractDTO">
+        <xs:sequence>
+          <xs:element name="CPF" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="E-mail" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="paymentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MONEY"/>
+      <xs:enumeration value="CREDIT"/>
+      <xs:enumeration value="DEBIT"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

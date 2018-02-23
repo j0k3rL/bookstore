@@ -15,6 +15,7 @@
 	<properties>
 		<bookstore.libraries.version>1.0.0-SNAPSHOT</bookstore.libraries.version>
 		<jboss.weld.version>2.3.3.Final</jboss.weld.version>
+		<javax.validation.version>1.1.0.Final</javax.validation.version>
 		<log4j.version>1.2.17</log4j.version>
 		<maven.compiler.plugin>3.7.0</maven.compiler.plugin>
 		<maven.compiler.source>1.7</maven.compiler.source>
@@ -26,6 +27,13 @@
 			<groupId>com.bookstore.libraries</groupId>
 			<artifactId>bookstore-libraries</artifactId>
 			<version>${bookstore.libraries.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>${javax.validation.version}</version>
+		    <scope>provided</scope>
 		</dependency>
 
 		<dependency>

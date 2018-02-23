@@ -7,12 +7,15 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.bookstore.financial.core.enumeration.PaymentType;
-import com.bookstore.libraries.adapter.DateAdapter;
+import com.bookstore.libraries.adapter.DateTimeAdapter;
 import com.bookstore.libraries.ejb.AbstractDTO;
+import com.bookstore.libraries.validation.annotation.ProductCodeValid;
+import com.bookstore.libraries.validation.annotation.UnitCodeValid;
 
 @XmlRootElement(name="payment")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -20,23 +23,26 @@ public class PaymentDTO extends AbstractDTO {
 
 	private static final long serialVersionUID = 1507769627499703143L;
 
-	@XmlElement(required=true)
+	@XmlElement(name="Type", required=true)
 	private PaymentType type;
 
-	@XmlElement(required=true)
+	@XmlElement(name="Value", required=true)
 	private BigDecimal value;
 	
-	@XmlElement(required=false)
-	@XmlJavaTypeAdapter(DateAdapter.class)
+	@XmlElement(name="Date", required=false)
+	@XmlJavaTypeAdapter(DateTimeAdapter.class)
 	private Calendar date;
 	
-	@XmlElement(required=true)
-	private List<String> products;
+	@ProductCodeValid
+	@XmlElementWrapper(name = "Products", required=true)
+	@XmlElement(name="Code", required=true)
+	private List<String> productCodes;
 	
-	@XmlElement(required=true)
+	@UnitCodeValid
+	@XmlElement(name="UnitCode", required=true)
 	private String unitCode;
 	
-	@XmlElement(required=true)
+	@XmlElement(name="Customer", required=true)
 	private CustomerDTO customer;
 
 	/**
@@ -82,17 +88,17 @@ public class PaymentDTO extends AbstractDTO {
 	}
 
 	/**
-	 * @return the products
+	 * @return the productCodes
 	 */
-	public List<String> getProducts() {
-		return products;
+	public List<String> getProductCodes() {
+		return productCodes;
 	}
 
 	/**
 	 * @param products the products to set
 	 */
-	public void setProducts(List<String> products) {
-		this.products = products;
+	public void setProductCodes(List<String> productCodes) {
+		this.productCodes = productCodes;
 	}
 
 	/**
@@ -128,7 +134,7 @@ public class PaymentDTO extends AbstractDTO {
 	 */
 	@Override
 	public String toString() {
-		return "PaymentDTO [type=" + type + ", value=" + value + ", date=" + date + ", products=" + products
+		return "PaymentDTO [type=" + type + ", value=" + value + ", date=" + date + ", productCodes=" + productCodes
 				+ ", unitCode=" + unitCode + ", customer=" + customer + "]";
 	}
 }

@@ -8,14 +8,14 @@ import javax.jws.WebService;
 import com.bookstore.financial.core.service.PaymentService;
 import com.bookstore.financial.ws.dto.PaymentDTO;
 
-@WebService(targetNamespace="http://bookstore-financial.com/paymentws/v1")
+@WebService(targetNamespace = "http://bookstore-financial.com/paymentws/v1")
 public class PaymentWS {
 
 	@Inject
 	private PaymentService paymentService;
-	
-	@WebMethod(operationName="registerPayment")
-	public void doRegister(@WebParam(name="payment")PaymentDTO payment) {
+
+	@WebMethod(operationName = "RegisterPayment")
+	public void doRegister(@WebParam(name = "Payment")PaymentDTO payment) {
 		
 	}
 }
