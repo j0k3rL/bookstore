@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="customerDTO" type="customerDTO"/>
-  <xs:element name="payment" type="paymentDTO"/>
+  <xs:element name="Customer" type="customerDTO"/>
+  <xs:element name="Payment" type="paymentDTO"/>
 
   <xs:complexType name="paymentWS">
     <xs:sequence/>
@@ -23,7 +23,7 @@
             </xs:complexType>
           </xs:element>
           <xs:element name="UnitCode" type="xs:string"/>
-          <xs:element name="Customer" type="customerDTO"/>
+          <xs:element ref="Customer"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
