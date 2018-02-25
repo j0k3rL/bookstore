@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="Customer" type="customerDTO"/>
-  <xs:element name="Payment" type="paymentDTO"/>
+  <xs:element name="customer" type="customerDTO"/>
+
+  <xs:element name="payment" type="paymentDTO"/>
 
   <xs:complexType name="paymentWS">
+    <xs:complexContent>
+      <xs:extension base="abstractWS">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="abstractWS" abstract="true">
     <xs:sequence/>
   </xs:complexType>
 
@@ -12,18 +21,18 @@
     <xs:complexContent>
       <xs:extension base="abstractDTO">
         <xs:sequence>
-          <xs:element name="Type" type="paymentType"/>
-          <xs:element name="Value" type="xs:decimal"/>
-          <xs:element name="Date" type="xs:string" minOccurs="0"/>
-          <xs:element name="Products">
+          <xs:element name="type" type="paymentType"/>
+          <xs:element name="value" type="xs:decimal"/>
+          <xs:element name="date" type="xs:string" minOccurs="0"/>
+          <xs:element name="products">
             <xs:complexType>
               <xs:sequence>
-                <xs:element name="Code" type="xs:string" maxOccurs="unbounded"/>
+                <xs:element name="code" type="xs:string" maxOccurs="unbounded"/>
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element name="UnitCode" type="xs:string"/>
-          <xs:element ref="Customer"/>
+          <xs:element name="unitCode" type="xs:string"/>
+          <xs:element ref="customer"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -37,9 +46,9 @@
     <xs:complexContent>
       <xs:extension base="abstractDTO">
         <xs:sequence>
-          <xs:element name="CPF" type="xs:string"/>
-          <xs:element name="Name" type="xs:string"/>
-          <xs:element name="E-mail" type="xs:string"/>
+          <xs:element name="cpf" type="xs:string"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="email" type="xs:string"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -53,3 +62,4 @@
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
+

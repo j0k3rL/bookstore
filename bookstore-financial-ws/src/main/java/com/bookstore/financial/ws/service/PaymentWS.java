@@ -18,15 +18,13 @@ public class PaymentWS extends AbstractWS {
 	@Inject
 	private PaymentService paymentService;
 
-	@WebMethod(operationName = "RegisterPayment")
-	public void doRegister(@WebParam(name = "Payment") PaymentDTO payment) throws WebServiceException {
+	@WebMethod(operationName = "registerPayment")
+	public void doRegister(@WebParam(name = "payment") PaymentDTO payment) throws WebServiceException {
 
 		try {
-
-			validate(SCHEMA_PATH, payment);
-
-			//TODO
 			
+			validateContract(SCHEMA_PATH, payment);
+
 		} catch (Exception e) {
 			throw new WebServiceException(e);
 		}

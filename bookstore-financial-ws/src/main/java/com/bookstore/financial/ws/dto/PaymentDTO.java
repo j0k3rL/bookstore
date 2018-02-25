@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -14,6 +15,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.bookstore.financial.core.enumeration.PaymentType;
 import com.bookstore.libraries.adapter.DateTimeAdapter;
+import com.bookstore.libraries.validation.annotation.CollectionValid;
 import com.bookstore.libraries.validation.annotation.ProductCodeValid;
 import com.bookstore.libraries.validation.annotation.UnitCodeValid;
 import com.bookstore.libraries.ws.AbstractDTO;
@@ -30,11 +32,12 @@ public class PaymentDTO extends AbstractDTO {
 	@XmlElement(required=true)
 	private BigDecimal value;
 	
+	@NotNull
 	@XmlElement(required=false)
 	@XmlJavaTypeAdapter(DateTimeAdapter.class)
 	private Calendar date;
 	
-	@ProductCodeValid
+	@CollectionValid(elementType=String.class, constraints={ProductCodeValid.class})
 	@XmlElementWrapper(name = "products", required=true)
 	@XmlElement(name="code", required=true)
 	private List<String> productCodes;
