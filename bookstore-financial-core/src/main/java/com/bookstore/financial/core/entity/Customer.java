@@ -15,6 +15,7 @@ public class Customer extends AbstractEntity {
 	private static final long serialVersionUID = 8546466113547101306L;
 
 	public static final String NQ_FIND_BY_CPF = "Customer.findByCpf";
+	public static final String PARAM_CPF = "cpf";
 	
 	@NotNull 
 	@CpfValid

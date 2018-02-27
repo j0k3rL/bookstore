@@ -13,6 +13,8 @@ public class CustomerDAO extends AbstractDAO<Customer> {
 		try {
 			
 			Query query = createNamedQuery(Customer.NQ_FIND_BY_CPF, Customer.class);
+			query.setParameter(Customer.PARAM_CPF, cpf);
+			
 			return getSingleResult(query);
 			
 		} catch (RuntimeException e) {
