@@ -8,7 +8,7 @@ import com.bookstore.libraries.jpa.AbstractDAO;
 
 public class CustomerDAO extends AbstractDAO<Customer> {
 
-	public Customer findyByCPF(String cpf) throws DAOException {
+	public Customer findByCPF(String cpf) throws DAOException {
 		
 		try {
 			
