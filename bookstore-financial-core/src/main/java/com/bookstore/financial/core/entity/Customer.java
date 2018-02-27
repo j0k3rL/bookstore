@@ -1,18 +1,30 @@
 package com.bookstore.financial.core.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 import com.bookstore.libraries.jpa.AbstractEntity;
+import com.bookstore.libraries.validation.annotation.CpfValid;
+import com.bookstore.libraries.validation.annotation.EmailValid;
 
 @Entity
+@NamedQuery(name=Customer.NQ_FIND_BY_CPF, query="SELECT c FROM Customer c WHERE c.cpf = :cpf") 
 public class Customer extends AbstractEntity {
 
 	private static final long serialVersionUID = 8546466113547101306L;
 
-	private String cpf;
+	public static final String NQ_FIND_BY_CPF = "Customer.findByCpf";
 	
+	@NotNull 
+	@CpfValid
+	private String cpf;
+
+	@NotNull
 	private String name;
 	
+	@NotNull 
+	@EmailValid
 	private String email;
 
 	/**

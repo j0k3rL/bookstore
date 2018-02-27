@@ -20,11 +20,10 @@ public class PaymentWS extends AbstractWS {
 
 	@WebMethod(operationName = "registerPayment")
 	public void doRegister(@WebParam(name = "payment") PaymentDTO payment) throws WebServiceException {
-
+		
 		try {
-			
 			validateContract(SCHEMA_PATH, payment);
-
+		
 		} catch (Exception e) {
 			throw new WebServiceException(e);
 		}
