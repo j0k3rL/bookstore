@@ -28,10 +28,10 @@ public class CustomerService extends AbstractService {
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public void findByCPF(String cpf) throws BusinessException {
+	public Customer findByCPF(String cpf) throws BusinessException {
 
 		try {
-			customerDAO.findByCPF(cpf);
+			return customerDAO.findByCPF(cpf);
 		} catch (DAOException e) {
 			throw new BusinessException();
 		}
