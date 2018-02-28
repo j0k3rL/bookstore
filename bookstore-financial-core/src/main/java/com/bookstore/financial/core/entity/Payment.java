@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,14 +34,12 @@ public class Payment extends AbstractEntity {
 	@Column(length = 10, nullable = false)
 	private String code;
 
-	@NotNull
-	@Valid
+	@NotNull @Valid
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
 	private Customer customer;
 
-	@NotNull
-	@Valid
+	@NotNull @Valid
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "unit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
 	private Unit unit;
@@ -67,8 +66,8 @@ public class Payment extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private PaymentType type;
 
-	@NotNull
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@NotNull @Valid
+	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "invoice_id")
 	private Invoice invoice;
 
