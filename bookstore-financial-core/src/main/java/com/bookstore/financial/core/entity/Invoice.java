@@ -3,7 +3,10 @@ package com.bookstore.financial.core.entity;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 import com.bookstore.libraries.jpa.AbstractEntity;
 
@@ -12,8 +15,14 @@ public class Invoice extends AbstractEntity {
 
 	private static final long serialVersionUID = -6856124368017177689L;
 
+	@NotNull
+	@Basic(optional = false)
+	@Column(length = 8, nullable = false)
 	private BigDecimal number;
 	
+	@NotNull
+	@Basic(optional = false)
+	@Column(nullable = false)
 	private byte[] file;
 
 	/**

@@ -1,20 +1,32 @@
 package com.bookstore.financial.core.entity;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
 
 import com.bookstore.libraries.jpa.AbstractEntity;
+import com.bookstore.libraries.validation.annotation.ProductCodeValid;
 
 @Entity
 public class Product extends AbstractEntity {
 
 	private static final long serialVersionUID = 752734198576111568L;
 
+	@NotNull @ProductCodeValid
+	@Basic(optional = false)
+	@Column(length = 9, nullable = false, unique = true)
 	private String code;
 	
+	@NotNull
+	@Basic(optional = false)
+	@Column(length = 25, nullable = false)
 	private String name;
 	
-	@Lob
+	@NotNull @Lob
+	@Basic(optional = false)
+	@Column(nullable = false)
 	private String description;
 
 	/**

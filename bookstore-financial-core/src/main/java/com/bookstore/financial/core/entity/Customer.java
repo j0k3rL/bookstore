@@ -1,5 +1,7 @@
 package com.bookstore.financial.core.entity;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
@@ -9,23 +11,26 @@ import com.bookstore.libraries.validation.annotation.CpfValid;
 import com.bookstore.libraries.validation.annotation.EmailValid;
 
 @Entity
-@NamedQuery(name=Customer.NQ_FIND_BY_CPF, query="SELECT c FROM Customer c WHERE c.cpf = :cpf") 
+@NamedQuery(name = Customer.NQ_FIND_BY_CPF, query = "SELECT c FROM Customer c WHERE c.cpf = :cpf")
 public class Customer extends AbstractEntity {
 
 	private static final long serialVersionUID = 8546466113547101306L;
 
 	public static final String NQ_FIND_BY_CPF = "Customer.findByCpf";
-	public static final String PARAM_CPF = "cpf";
-	
-	@NotNull 
-	@CpfValid
+
+	@NotNull @CpfValid
+	@Basic(optional = false)
+	@Column(length = 11, nullable = false, unique = true)
 	private String cpf;
 
 	@NotNull
+	@Basic(optional = false)
+	@Column(length = 25, nullable = false)
 	private String name;
-	
-	@NotNull 
-	@EmailValid
+
+	@NotNull @EmailValid
+	@Basic(optional = false)
+	@Column(length = 25, nullable = false)
 	private String email;
 
 	/**
@@ -36,7 +41,8 @@ public class Customer extends AbstractEntity {
 	}
 
 	/**
-	 * @param cpf the cpf to set
+	 * @param cpf
+	 *            the cpf to set
 	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
@@ -50,7 +56,8 @@ public class Customer extends AbstractEntity {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -64,13 +71,16 @@ public class Customer extends AbstractEntity {
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

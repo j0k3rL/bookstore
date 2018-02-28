@@ -1,21 +1,34 @@
 package com.bookstore.financial.core.entity;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
 import com.bookstore.financial.core.enumeration.UnitType;
 import com.bookstore.libraries.jpa.AbstractEntity;
+import com.bookstore.libraries.validation.annotation.UnitCodeValid;
 
 @Entity
 public class Unit extends AbstractEntity {
 
 	private static final long serialVersionUID = -6464957647150213257L;
 
+	@NotNull @UnitCodeValid
+	@Basic(optional = false)
+	@Column(length = 9, nullable = false, unique = true)
 	private String code;
 	
+	@NotNull
+	@Basic(optional = false)
+	@Column(length = 25, nullable = false)
 	private String name;
 	
+	@NotNull
+	@Basic(optional = false)
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private UnitType type;
 
