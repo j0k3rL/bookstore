@@ -4,27 +4,28 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.bookstore.libraries.jpa.AbstractEntity;
-import com.bookstore.libraries.validation.annotation.ProductCodeValid;
+import com.bookstore.libraries.validation.annotation.ProductCode;
 
 @Entity
 public class Product extends AbstractEntity {
 
 	private static final long serialVersionUID = 752734198576111568L;
 
-	@NotNull @ProductCodeValid
+	@NotBlank @ProductCode
 	@Basic(optional = false)
 	@Column(length = 9, nullable = false, unique = true)
 	private String code;
 	
-	@NotNull
+	@NotBlank
 	@Basic(optional = false)
 	@Column(length = 25, nullable = false)
 	private String name;
 	
-	@NotNull @Lob
+	@NotBlank @Lob
 	@Basic(optional = false)
 	@Column(nullable = false)
 	private String description;
@@ -76,6 +77,6 @@ public class Product extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		return "Product [code=" + code + ", name=" + name + ", description=" + description + "]";
+		return "Product [code=" + code + ", name=" + name + ", description=" + description + ", id=" + id + "]";
 	}
 }

@@ -4,11 +4,12 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.bookstore.libraries.jpa.AbstractEntity;
-import com.bookstore.libraries.validation.annotation.CpfValid;
-import com.bookstore.libraries.validation.annotation.EmailValid;
 
 @Entity
 @NamedQuery(name = Customer.NQ_FIND_BY_CPF, query = "SELECT c FROM Customer c WHERE c.cpf = :cpf")
@@ -17,18 +18,19 @@ public class Customer extends AbstractEntity {
 	private static final long serialVersionUID = 8546466113547101306L;
 
 	public static final String NQ_FIND_BY_CPF = "Customer.findByCpf";
-
-	@NotNull @CpfValid
+	public static final String CPF_PROPERTY = "cpf";
+	
+	@NotBlank @CPF
 	@Basic(optional = false)
 	@Column(length = 11, nullable = false, unique = true)
 	private String cpf;
 
-	@NotNull
+	@NotBlank
 	@Basic(optional = false)
 	@Column(length = 25, nullable = false)
 	private String name;
 
-	@NotNull @EmailValid
+	@NotBlank @Email
 	@Basic(optional = false)
 	@Column(length = 25, nullable = false)
 	private String email;
@@ -78,13 +80,11 @@ public class Customer extends AbstractEntity {
 		this.email = email;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Customer [cpf=" + cpf + ", name=" + name + ", email=" + email + "]";
+		return "Customer [cpf=" + cpf + ", name=" + name + ", email=" + email + ", id=" + id + "]";
 	}
 }

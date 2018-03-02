@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.bookstore.financial.core.enumeration.PaymentType;
 import com.bookstore.libraries.adapter.DateTimeAdapter;
-import com.bookstore.libraries.validation.annotation.UnitCodeValid;
+import com.bookstore.libraries.validation.annotation.UnitCode;
 import com.bookstore.libraries.ws.AbstractDTO;
 
 @XmlRootElement(name="payment")
@@ -37,7 +37,7 @@ public class PaymentDTO extends AbstractDTO {
 	@XmlElement(name="code", required=true)
 	private List<String> productCodes;
 	
-	@UnitCodeValid
+	@UnitCode
 	@XmlElement(required=true)
 	private String unitCode;
 	

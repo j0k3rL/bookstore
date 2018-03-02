@@ -19,7 +19,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.bookstore.financial.core.enumeration.PaymentType;
 import com.bookstore.libraries.jpa.AbstractEntity;
@@ -29,7 +33,7 @@ public class Payment extends AbstractEntity {
 
 	private static final long serialVersionUID = 5057123697187222044L;
 
-	@NotNull
+	@NotBlank
 	@Basic(optional = false)
 	@Column(length = 10, nullable = false)
 	private String code;
@@ -44,18 +48,20 @@ public class Payment extends AbstractEntity {
 	@JoinColumn(name = "unit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
 	private Unit unit;
 
-	@ManyToMany(targetEntity = Product.class, fetch = FetchType.LAZY)
-	@JoinTable(name = "Product", joinColumns = {
-			@JoinColumn(name = "id_payment", referencedColumnName = "id") }, inverseJoinColumns = {
-			@JoinColumn(name = "id_product", referencedColumnName = "id") })
+	@NotEmpty @Valid
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Payment_Product", joinColumns = {
+			@JoinColumn(name = "payment_id", referencedColumnName = "id") }, inverseJoinColumns = {
+			@JoinColumn(name = "product_id", referencedColumnName = "id") })
 	private List<Product> products;
 
+	@NotNull
 	@Basic(optional = false)
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Calendar date;
 
-	@NotNull
+	@NotNull @Min(value = 0)
 	@Basic(optional = false)
 	@Column(nullable = false, precision = 2)
 	private BigDecimal value;
@@ -191,14 +197,13 @@ public class Payment extends AbstractEntity {
 		this.invoice = invoice;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Payment [code=" + code + ", customer=" + customer + ", unit=" + unit + ", products=" + products
-				+ ", date=" + date + ", value=" + value + ", type=" + type + ", invoice=" + invoice + "]";
+				+ ", date=" + date + ", value=" + value + ", type=" + type + ", invoice=" + invoice + ", id=" + id
+				+ "]";
 	}
 }

@@ -58,6 +58,6 @@ public class Invoice extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		return "Invoice [number=" + number + ", file=" + Arrays.toString(file) + "]";
+		return "Invoice [number=" + number + ", file=" + Arrays.toString(file) + ", id=" + id + "]";
 	}
 }

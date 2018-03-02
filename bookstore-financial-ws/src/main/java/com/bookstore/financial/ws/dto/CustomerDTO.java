@@ -5,8 +5,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.bookstore.libraries.validation.annotation.CpfValid;
-import com.bookstore.libraries.validation.annotation.EmailValid;
+import com.bookstore.libraries.validation.annotation.CPF;
+import com.bookstore.libraries.validation.annotation.Email;
 import com.bookstore.libraries.ws.AbstractDTO;
 
 @XmlRootElement(name="customer")
@@ -15,14 +15,14 @@ public class CustomerDTO extends AbstractDTO  {
 
 	private static final long serialVersionUID = 8440798476852640571L;
 
-	@CpfValid
+	@CPF
 	@XmlElement(required=true)
 	private String cpf;
 	
 	@XmlElement(required=true)
 	private String name;
 	
-	@EmailValid
+	@Email
 	@XmlElement(required=true)
 	private String email;
 

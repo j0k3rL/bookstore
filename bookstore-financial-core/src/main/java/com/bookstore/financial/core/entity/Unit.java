@@ -5,23 +5,30 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.bookstore.financial.core.enumeration.UnitType;
 import com.bookstore.libraries.jpa.AbstractEntity;
-import com.bookstore.libraries.validation.annotation.UnitCodeValid;
+import com.bookstore.libraries.validation.annotation.UnitCode;
 
 @Entity
+@NamedQuery(name = Unit.NQ_FIND_BY_CODE, query = "SELECT u FROM Unit u WHERE u.code = :code")
 public class Unit extends AbstractEntity {
 
 	private static final long serialVersionUID = -6464957647150213257L;
 
-	@NotNull @UnitCodeValid
+	public static final String NQ_FIND_BY_CODE = "Unit.findByCode";
+	public static final String CODE_PROPERTY = "code";
+	
+	@NotBlank @UnitCode
 	@Basic(optional = false)
 	@Column(length = 9, nullable = false, unique = true)
 	private String code;
 	
-	@NotNull
+	@NotBlank
 	@Basic(optional = false)
 	@Column(length = 25, nullable = false)
 	private String name;
@@ -79,6 +86,6 @@ public class Unit extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		return "Unit [code=" + code + ", name=" + name + ", type=" + type + "]";
+		return "Unit [code=" + code + ", name=" + name + ", type=" + type + ", id=" + id + "]";
 	}
 }

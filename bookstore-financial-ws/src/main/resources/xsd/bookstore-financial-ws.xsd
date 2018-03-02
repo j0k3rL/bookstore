@@ -2,7 +2,6 @@
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="customer" type="customerDTO"/>
-
   <xs:element name="payment" type="paymentDTO"/>
 
   <xs:complexType name="paymentWS">
@@ -62,4 +61,3 @@
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
-
