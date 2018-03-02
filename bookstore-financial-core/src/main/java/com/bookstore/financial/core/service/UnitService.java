@@ -11,8 +11,6 @@ import com.bookstore.libraries.exception.BusinessException;
 import com.bookstore.libraries.exception.DAOException;
 import com.bookstore.libraries.exception.EntityNotFoundException;
 import com.bookstore.libraries.exception.ObjectNotFoundDAOException;
-import com.bookstore.libraries.exception.ValidationException;
-import com.bookstore.libraries.validation.BeanValidator;
 
 public class UnitService extends AbstractService {
 
@@ -27,19 +25,6 @@ public class UnitService extends AbstractService {
 		} catch (ObjectNotFoundDAOException e) {
 			throw new EntityNotFoundException(e);
 		} catch (DAOException e) {
-			throw new BusinessException(e);
-		}
-	}
-	
-	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public void load(Unit unit) throws BusinessException {
-		
-		try {
-			
-			BeanValidator.validateProperty(unit, Unit.CODE_PROPERTY);
-			unit = findByCode(unit.getCode());
-			
-		} catch (ValidationException e) {
 			throw new BusinessException(e);
 		}
 	}

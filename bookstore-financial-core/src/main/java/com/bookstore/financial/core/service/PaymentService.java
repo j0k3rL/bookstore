@@ -19,6 +19,7 @@ public class PaymentService extends AbstractService {
 	
 	@Inject
 	private CustomerService customerService;
+	
 	@Inject
 	private UnitService unitService;
 	
