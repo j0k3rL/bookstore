@@ -12,7 +12,7 @@ import com.bookstore.libraries.jpa.AbstractEntity;
 import com.bookstore.libraries.validation.annotation.ProductCode;
 
 @Entity
-@NamedQuery(name = Product.NQ_FIND_BY_CODE, query = "SELECT p FROM Product u WHERE p.code = :code")
+@NamedQuery(name = Product.NQ_FIND_BY_CODE, query = "SELECT p FROM Product p WHERE p.code = :code")
 public class Product extends AbstractEntity {
 
 	private static final long serialVersionUID = 752734198576111568L;
