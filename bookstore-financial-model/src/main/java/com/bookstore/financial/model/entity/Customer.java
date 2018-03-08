@@ -1,4 +1,4 @@
-package com.bookstore.financial.core.entity;
+package com.bookstore.financial.model.entity;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;

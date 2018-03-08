@@ -1,8 +1,8 @@
-package com.bookstore.financial.core.dao;
+package com.bookstore.financial.model.dao;
 
 import javax.persistence.Query;
 
-import com.bookstore.financial.core.entity.Unit;
+import com.bookstore.financial.model.entity.Unit;
 import com.bookstore.libraries.exception.DAOException;
 import com.bookstore.libraries.jpa.AbstractDAO;
 

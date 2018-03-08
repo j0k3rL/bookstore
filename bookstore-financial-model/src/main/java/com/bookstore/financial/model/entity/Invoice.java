@@ -1,4 +1,4 @@
-package com.bookstore.financial.core.entity;
+package com.bookstore.financial.model.entity;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

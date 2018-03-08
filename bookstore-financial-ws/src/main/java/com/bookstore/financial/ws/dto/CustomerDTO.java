@@ -5,8 +5,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.bookstore.libraries.validation.annotation.CPF;
-import com.bookstore.libraries.validation.annotation.Email;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.bookstore.libraries.ws.AbstractDTO;
 
 @XmlRootElement(name="customer")

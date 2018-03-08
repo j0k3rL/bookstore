@@ -25,8 +25,6 @@ public class PaymentWS extends AbstractWS {
 
 			validateContract(SCHEMA_PATH, payment);
 			
-			//TODO: Continue...
-			
 		} catch (Exception e) {
 			throw new WebServiceException(e);
 		}

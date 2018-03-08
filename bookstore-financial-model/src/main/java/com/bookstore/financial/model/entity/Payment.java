@@ -1,4 +1,4 @@
-package com.bookstore.financial.core.entity;
+package com.bookstore.financial.model.entity;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -25,7 +25,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.bookstore.financial.core.enumeration.PaymentType;
+import com.bookstore.financial.model.enumeration.PaymentType;
 import com.bookstore.libraries.jpa.AbstractEntity;
 
 @Entity
@@ -133,7 +133,7 @@ public class Payment extends AbstractEntity {
 	 * @param products
 	 *            the products to set
 	 */
-	public void setProduct(List<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 

@@ -1,43 +1,31 @@
-package com.bookstore.financial.core.service;
+package com.bookstore.financial.model.service;
 
-import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
-import com.bookstore.financial.core.dao.CustomerDAO;
-import com.bookstore.financial.core.entity.Customer;
+import com.bookstore.financial.model.dao.UnitDAO;
+import com.bookstore.financial.model.entity.Unit;
 import com.bookstore.libraries.ejb.AbstractService;
 import com.bookstore.libraries.exception.BusinessException;
 import com.bookstore.libraries.exception.DAOException;
 import com.bookstore.libraries.exception.EntityNotFoundException;
 import com.bookstore.libraries.exception.ObjectNotFoundDAOException;
-import com.bookstore.libraries.exception.RollbackBusinessException;
 
-@Stateless
-public class CustomerService extends AbstractService {
+public class UnitService extends AbstractService {
 
 	@Inject
-	private CustomerDAO customerDAO;
-
+	private UnitDAO unitDAO;
+	
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public Customer findByCPF(String cpf) throws BusinessException {
+	public Unit findByCode(String code) throws BusinessException {
 
 		try {
-			return customerDAO.findByCPF(cpf);
+			return unitDAO.findByCode(code);
 		} catch (ObjectNotFoundDAOException e) {
 			throw new EntityNotFoundException(e);
 		} catch (DAOException e) {
 			throw new BusinessException(e);
-		}
-	}
-	
-	public void insert(Customer customer) throws BusinessException {
-
-		try {
-			customerDAO.insert(customer);
-		} catch (DAOException e) {
-			throw new RollbackBusinessException(e);
 		}
 	}
 }

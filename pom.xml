@@ -8,7 +8,7 @@
 	<name>Bookstore Financial</name>
 
 	<modules>
-		<module>bookstore-financial-core</module>
+		<module>bookstore-financial-model</module>
 		<module>bookstore-financial-ws</module>
 	</modules>
 

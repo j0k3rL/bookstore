@@ -1,12 +1,15 @@
-package com.bookstore.financial.core.service;
+package com.bookstore.financial.model.service;
+
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import com.bookstore.financial.core.dao.PaymentDAO;
-import com.bookstore.financial.core.entity.Customer;
-import com.bookstore.financial.core.entity.Payment;
-import com.bookstore.financial.core.entity.Unit;
+import com.bookstore.financial.model.dao.PaymentDAO;
+import com.bookstore.financial.model.entity.Customer;
+import com.bookstore.financial.model.entity.Payment;
+import com.bookstore.financial.model.entity.Product;
+import com.bookstore.financial.model.entity.Unit;
 import com.bookstore.libraries.ejb.AbstractService;
 import com.bookstore.libraries.exception.BusinessException;
 import com.bookstore.libraries.exception.EntityNotFoundException;
@@ -23,6 +26,9 @@ public class PaymentService extends AbstractService {
 	@Inject
 	private UnitService unitService;
 	
+	@Inject
+	private ProductService productService;
+	
 	public void register(Payment payment) throws BusinessException {
 		
 		try {
@@ -30,9 +36,9 @@ public class PaymentService extends AbstractService {
 			loadPaymentCustomer(payment);
 		
 			loadPaymentUnit(payment);
-		
-			//TODO: Continue...
 			
+			loadPaymentProducts(payment);
+		
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
@@ -61,5 +67,16 @@ public class PaymentService extends AbstractService {
 		unit = unitService.findByCode(unit.getCode());
 		
 		payment.setUnit(unit);
+	}
+	
+	private void loadPaymentProducts(Payment payment) throws BusinessException {
+
+		List<Product> products = payment.getProducts();
+		
+		for(Product p : products) {
+			p = productService.findByCode(p.getCode());
+		}
+		
+		payment.setProducts(products);
 	}
 }
