@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import com.bookstore.financial.core.enumeration.PaymentType;
+import com.bookstore.financial.model.enumeration.PaymentType;
 import com.bookstore.libraries.adapter.DateTimeAdapter;
 import com.bookstore.libraries.validation.annotation.UnitCode;
 import com.bookstore.libraries.ws.AbstractDTO;

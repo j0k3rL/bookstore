@@ -5,7 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import com.bookstore.financial.core.service.PaymentService;
+import com.bookstore.financial.model.service.PaymentService;
 import com.bookstore.financial.ws.dto.PaymentDTO;
 import com.bookstore.libraries.exception.WebServiceException;
 import com.bookstore.libraries.ws.AbstractWS;

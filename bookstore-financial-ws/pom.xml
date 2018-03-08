@@ -18,8 +18,8 @@
   <dependencies>
   
 	  <dependency>
-	  	<groupId>com.bookstore.financial.core</groupId>
-  		<artifactId>bookstore-financial-core</artifactId>
+	  	<groupId>com.bookstore.financial.model</groupId>
+  		<artifactId>bookstore-financial-model</artifactId>
   		<version>${project.parent.version}</version>
 	  </dependency>
 	  
