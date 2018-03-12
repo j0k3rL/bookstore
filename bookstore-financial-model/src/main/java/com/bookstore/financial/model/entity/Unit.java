@@ -35,7 +35,7 @@ public class Unit extends AbstractEntity {
 	
 	@NotNull
 	@Basic(optional = false)
-	@Column(nullable = false)
+	@Column(nullable = false, length = 10)
 	@Enumerated(EnumType.STRING)
 	private UnitType type;
 

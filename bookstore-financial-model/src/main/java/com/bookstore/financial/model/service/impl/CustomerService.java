@@ -1,4 +1,4 @@
-package com.bookstore.financial.model.service;
+package com.bookstore.financial.model.service.impl;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import com.bookstore.financial.model.dao.CustomerDAO;
 import com.bookstore.financial.model.entity.Customer;
+import com.bookstore.financial.model.service.CustomerLocal;
 import com.bookstore.libraries.ejb.AbstractService;
 import com.bookstore.libraries.exception.BusinessException;
 import com.bookstore.libraries.exception.DAOException;
@@ -15,11 +16,15 @@ import com.bookstore.libraries.exception.ObjectNotFoundDAOException;
 import com.bookstore.libraries.exception.RollbackBusinessException;
 
 @Stateless
-public class CustomerService extends AbstractService {
-
-	@Inject
+public class CustomerService extends AbstractService implements CustomerLocal {
+	
 	private CustomerDAO customerDAO;
 
+	@Inject
+	public CustomerService(CustomerDAO customerDAO) {
+		this.customerDAO = customerDAO;
+	}
+	
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public Customer findByCPF(String cpf) throws BusinessException {
 

@@ -1,27 +1,34 @@
-package com.bookstore.financial.model.service;
+package com.bookstore.financial.model.service.impl;
 
+import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
-import com.bookstore.financial.model.dao.UnitDAO;
-import com.bookstore.financial.model.entity.Unit;
+import com.bookstore.financial.model.dao.ProductDAO;
+import com.bookstore.financial.model.entity.Product;
+import com.bookstore.financial.model.service.ProductLocal;
 import com.bookstore.libraries.ejb.AbstractService;
 import com.bookstore.libraries.exception.BusinessException;
 import com.bookstore.libraries.exception.DAOException;
 import com.bookstore.libraries.exception.EntityNotFoundException;
 import com.bookstore.libraries.exception.ObjectNotFoundDAOException;
 
-public class UnitService extends AbstractService {
+@Stateless
+public class ProductService extends AbstractService implements ProductLocal {
+
+	private ProductDAO productDAO;
 
 	@Inject
-	private UnitDAO unitDAO;
+	public ProductService(ProductDAO productDAO) {
+		this.productDAO = productDAO;
+	}
 	
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public Unit findByCode(String code) throws BusinessException {
+	public Product findByCode(String code) throws BusinessException {
 
 		try {
-			return unitDAO.findByCode(code);
+			return productDAO.findByCode(code);
 		} catch (ObjectNotFoundDAOException e) {
 			throw new EntityNotFoundException(e);
 		} catch (DAOException e) {

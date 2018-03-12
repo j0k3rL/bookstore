@@ -5,7 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import com.bookstore.financial.model.service.PaymentService;
+import com.bookstore.financial.model.service.PaymentLocal;
 import com.bookstore.financial.ws.dto.PaymentDTO;
 import com.bookstore.libraries.exception.WebServiceException;
 import com.bookstore.libraries.ws.AbstractWS;
@@ -16,14 +16,16 @@ public class PaymentWS extends AbstractWS {
 	private static final String SCHEMA_PATH = "xsd/bookstore-financial-ws.xsd";
 
 	@Inject
-	private PaymentService paymentService;
+	private PaymentLocal paymentService;
 
 	@WebMethod(operationName = "registerPayment")
 	public void doRegister(@WebParam(name = "payment") PaymentDTO payment) throws WebServiceException {
 		
 		try {
 
-			validateContract(SCHEMA_PATH, payment);
+//			validateContract(SCHEMA_PATH, payment);
+			
+			paymentService.register(null);
 			
 		} catch (Exception e) {
 			throw new WebServiceException(e);

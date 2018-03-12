@@ -68,7 +68,7 @@ public class Payment extends AbstractEntity {
 
 	@NotNull
 	@Basic(optional = false)
-	@Column(nullable = false)
+	@Column(nullable = false, length = 6)
 	@Enumerated(EnumType.STRING)
 	private PaymentType type;
 

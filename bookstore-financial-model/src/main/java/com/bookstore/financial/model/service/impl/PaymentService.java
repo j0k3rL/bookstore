@@ -1,6 +1,4 @@
-package com.bookstore.financial.model.service;
-
-import java.util.List;
+package com.bookstore.financial.model.service.impl;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -10,24 +8,32 @@ import com.bookstore.financial.model.entity.Customer;
 import com.bookstore.financial.model.entity.Payment;
 import com.bookstore.financial.model.entity.Product;
 import com.bookstore.financial.model.entity.Unit;
+import com.bookstore.financial.model.service.CustomerLocal;
+import com.bookstore.financial.model.service.PaymentLocal;
+import com.bookstore.financial.model.service.ProductLocal;
+import com.bookstore.financial.model.service.UnitLocal;
 import com.bookstore.libraries.ejb.AbstractService;
 import com.bookstore.libraries.exception.BusinessException;
 import com.bookstore.libraries.exception.EntityNotFoundException;
 
 @Stateless
-public class PaymentService extends AbstractService {
+public class PaymentService extends AbstractService implements PaymentLocal {
 
-	@Inject
 	private PaymentDAO paymentDAO;
 	
-	@Inject
-	private CustomerService customerService;
+	private CustomerLocal customerService;
 	
-	@Inject
-	private UnitService unitService;
+	private UnitLocal unitService;
 	
+	private ProductLocal productService;
+
 	@Inject
-	private ProductService productService;
+	public PaymentService(PaymentDAO paymentDAO, CustomerLocal customerService, UnitLocal unitService, ProductLocal productService) {
+		this.paymentDAO = paymentDAO;
+		this.customerService = customerService;
+		this.unitService = unitService;
+		this.productService = productService;
+	}
 	
 	public void register(Payment payment) throws BusinessException {
 		
@@ -71,12 +77,12 @@ public class PaymentService extends AbstractService {
 	
 	private void loadPaymentProducts(Payment payment) throws BusinessException {
 
-		List<Product> products = payment.getProducts();
-		
-		for(Product p : products) {
-			p = productService.findByCode(p.getCode());
+		for(int i = 0 ; i < payment.getProducts().size() ; i++) {
+			
+			Product product = payment.getProducts().get(i);
+			product = productService.findByCode(product.getCode());
+			
+			payment.getProducts().set(i, product);
 		}
-		
-		payment.setProducts(products);
 	}
 }
