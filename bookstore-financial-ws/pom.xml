@@ -1,47 +1,48 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.bookstore.financial</groupId>
-    <artifactId>bookstore-financial</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <groupId>com.bookstore.financial.ws</groupId>
-  <artifactId>bookstore-financial-ws</artifactId>
-  <packaging>war</packaging>
-  <name>Bookstore Financial WS</name>
-  
-  <properties>
-    <apache.cxf.version>3.0.5</apache.cxf.version>
-    <maven.war.version>2.6</maven.war.version>
-  </properties>
-  
-  <dependencies>
-  
-	  <dependency>
-	  	<groupId>com.bookstore.financial.model</groupId>
-  		<artifactId>bookstore-financial-model</artifactId>
-  		<version>${project.parent.version}</version>
-	  </dependency>
-	  
-	  <dependency>
-	    <groupId>org.apache.cxf</groupId>
-	    <artifactId>cxf-rt-frontend-jaxws</artifactId>
-	    <version>${apache.cxf.version}</version>
-	    <scope>provided</scope>
-	  </dependency>
-	  
-  </dependencies>
-  
-  <build>
-    <plugins>
-	    <plugin>
-	    <artifactId>maven-war-plugin</artifactId>
-	    <version>${maven.war.version}</version>
-	    <configuration>
-	        <warName>bookstore-financial-ws</warName>
-	    </configuration>
-	</plugin>
-    </plugins>
-  </build>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.bookstore.financial</groupId>
+		<artifactId>bookstore-financial</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.bookstore.financial.ws</groupId>
+	<artifactId>bookstore-financial-ws</artifactId>
+	<packaging>war</packaging>
+	<name>Bookstore Financial WS</name>
+
+	<properties>
+		<apache.cxf.version>3.0.5</apache.cxf.version>
+		<maven.war.version>2.6</maven.war.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.bookstore.financial.model</groupId>
+			<artifactId>bookstore-financial-model</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${apache.cxf.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven.war.version}</version>
+				<configuration>
+					<warName>bookstore-financial-ws</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

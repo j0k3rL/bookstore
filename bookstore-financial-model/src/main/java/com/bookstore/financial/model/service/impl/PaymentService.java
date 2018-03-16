@@ -15,6 +15,7 @@ import com.bookstore.financial.model.service.UnitLocal;
 import com.bookstore.libraries.ejb.AbstractService;
 import com.bookstore.libraries.exception.BusinessException;
 import com.bookstore.libraries.exception.EntityNotFoundException;
+import com.bookstore.libraries.exception.RollbackBusinessException;
 
 @Stateless
 public class PaymentService extends AbstractService implements PaymentLocal {
@@ -46,7 +47,7 @@ public class PaymentService extends AbstractService implements PaymentLocal {
 			loadPaymentProducts(payment);
 		
 		} catch (Exception e) {
-			throw new BusinessException(e);
+			throw new RollbackBusinessException(e);
 		}
 	}
 	
