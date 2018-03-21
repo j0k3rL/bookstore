@@ -8,28 +8,28 @@ import com.bookstore.financial.model.entity.Customer;
 import com.bookstore.financial.model.entity.Payment;
 import com.bookstore.financial.model.entity.Product;
 import com.bookstore.financial.model.entity.Unit;
-import com.bookstore.financial.model.service.CustomerLocal;
-import com.bookstore.financial.model.service.PaymentLocal;
-import com.bookstore.financial.model.service.ProductLocal;
-import com.bookstore.financial.model.service.UnitLocal;
+import com.bookstore.financial.model.service.CustomerService;
+import com.bookstore.financial.model.service.PaymentService;
+import com.bookstore.financial.model.service.ProductService;
+import com.bookstore.financial.model.service.UnitService;
 import com.bookstore.libraries.ejb.AbstractService;
 import com.bookstore.libraries.exception.BusinessException;
 import com.bookstore.libraries.exception.EntityNotFoundException;
 import com.bookstore.libraries.exception.RollbackBusinessException;
 
 @Stateless
-public class PaymentService extends AbstractService implements PaymentLocal {
+public class PaymentServiceImpl extends AbstractService implements PaymentService {
 
 	private PaymentDAO paymentDAO;
 	
-	private CustomerLocal customerService;
+	private CustomerService customerService;
 	
-	private UnitLocal unitService;
+	private UnitService unitService;
 	
-	private ProductLocal productService;
+	private ProductService productService;
 
 	@Inject
-	public PaymentService(PaymentDAO paymentDAO, CustomerLocal customerService, UnitLocal unitService, ProductLocal productService) {
+	public PaymentServiceImpl(PaymentDAO paymentDAO, CustomerService customerService, UnitService unitService, ProductService productService) {
 		this.paymentDAO = paymentDAO;
 		this.customerService = customerService;
 		this.unitService = unitService;
@@ -78,12 +78,12 @@ public class PaymentService extends AbstractService implements PaymentLocal {
 	
 	private void loadPaymentProducts(Payment payment) throws BusinessException {
 
-		for(int i = 0 ; i < payment.getProducts().size() ; i++) {
-			
-			Product product = payment.getProducts().get(i);
-			product = productService.findByCode(product.getCode());
-			
-			payment.getProducts().set(i, product);
-		}
+//		for(int i = 0 ; i < payment.getProducts().size() ; i++) {
+//			
+//			Product product = payment.getProducts().get(i);
+//			product = productService.findByCode(product.getCode());
+//			
+//			payment.getProducts().set(i, product);
+//		}
 	}
 }

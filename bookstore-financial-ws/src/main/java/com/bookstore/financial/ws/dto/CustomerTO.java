@@ -8,11 +8,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.bookstore.libraries.ws.AbstractDTO;
+import com.bookstore.libraries.ws.AbstractTO;
 
 @XmlRootElement(name="customer")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CustomerDTO extends AbstractDTO  {
+public class CustomerTO extends AbstractTO  {
 
 	private static final long serialVersionUID = 8440798476852640571L;
 

@@ -6,8 +6,8 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import com.bookstore.financial.model.entity.Payment;
-import com.bookstore.financial.model.service.PaymentLocal;
-import com.bookstore.financial.ws.dto.PaymentDTO;
+import com.bookstore.financial.model.service.PaymentService;
+import com.bookstore.financial.ws.dto.PaymentTO;
 import com.bookstore.libraries.exception.WebServiceException;
 import com.bookstore.libraries.ws.AbstractWS;
 import com.bookstore.libraries.ws.ObjectMapper;
@@ -18,19 +18,19 @@ public class PaymentWS extends AbstractWS {
 	private static final String SCHEMA_PATH = "xsd/bookstore-financial-ws.xsd";
 
 	@Inject
-	private PaymentLocal paymentService;
+	private PaymentService paymentService;
 	
 	@Inject
-	private ObjectMapper<Payment, PaymentDTO> paymentMapper;
+	private ObjectMapper<Payment, PaymentTO> paymentMapper;
 
 	@WebMethod(operationName = "registerPayment")
-	public void doRegister(@WebParam(name = "payment") PaymentDTO paymentDTO) throws WebServiceException {
+	public void doRegister(@WebParam(name = "payment") PaymentTO paymentTO) throws WebServiceException {
 		
 		try {
 
-			validateContract(SCHEMA_PATH, paymentDTO);
+			validateRequest(SCHEMA_PATH, paymentTO);
 			
-			Payment payment = paymentMapper.toEntity(paymentDTO);
+			Payment payment = paymentMapper.toEntity(paymentTO);
 			paymentService.register(payment);
 			
 		} catch (Exception e) {

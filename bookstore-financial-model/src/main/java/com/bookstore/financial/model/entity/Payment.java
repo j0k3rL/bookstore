@@ -12,9 +12,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +22,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import com.bookstore.financial.model.enumeration.PaymentType;
 import com.bookstore.libraries.jpa.AbstractEntity;
@@ -48,12 +46,9 @@ public class Payment extends AbstractEntity {
 	@JoinColumn(name = "unit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
 	private Unit unit;
 
-	@NotEmpty @Valid
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "Payment_Product", joinColumns = {
-			@JoinColumn(name = "payment_id", referencedColumnName = "id") }, inverseJoinColumns = {
-			@JoinColumn(name = "product_id", referencedColumnName = "id") })
-	private List<Product> products;
+	@NotNull @Valid
+    @OneToMany(mappedBy="payment", fetch = FetchType.LAZY)
+	private List<PaymentProduct> paymentProducts;
 
 	@NotNull
 	@Basic(optional = false)
@@ -123,20 +118,20 @@ public class Payment extends AbstractEntity {
 	}
 
 	/**
-	 * @return the products
+	 * @return the paymentProducts
 	 */
-	public List<Product> getProducts() {
-		return products;
+	public List<PaymentProduct> getPaymentProducts() {
+		return paymentProducts;
 	}
 
 	/**
-	 * @param products
-	 *            the products to set
+	 * @param paymentProducts
+	 *            the paymentProducts to set
 	 */
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setPaymentProducts(List<PaymentProduct> paymentProducts) {
+		this.paymentProducts = paymentProducts;
 	}
-
+	
 	/**
 	 * @return the date
 	 */
@@ -197,13 +192,10 @@ public class Payment extends AbstractEntity {
 		this.invoice = invoice;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Payment [code=" + code + ", customer=" + customer + ", unit=" + unit + ", products=" + products
-				+ ", date=" + date + ", value=" + value + ", type=" + type + ", invoice=" + invoice + ", id=" + id
-				+ "]";
+		return "Payment [code=" + code + ", customer=" + customer + ", unit=" + unit + ", paymentProducts="
+				+ paymentProducts + ", date=" + date + ", value=" + value + ", type=" + type + ", invoice=" + invoice
+				+ ", id=" + id + "]";
 	}
 }

@@ -15,11 +15,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.bookstore.financial.model.enumeration.PaymentType;
 import com.bookstore.libraries.adapter.DateTimeAdapter;
 import com.bookstore.libraries.validation.annotation.UnitCode;
-import com.bookstore.libraries.ws.AbstractDTO;
+import com.bookstore.libraries.ws.AbstractTO;
 
 @XmlRootElement(name="payment")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class PaymentDTO extends AbstractDTO {
+public class PaymentTO extends AbstractTO {
 
 	private static final long serialVersionUID = 1507769627499703143L;
 
@@ -43,7 +43,7 @@ public class PaymentDTO extends AbstractDTO {
 	
 	@Valid
 	@XmlElement(required=true)
-	private CustomerDTO customer;
+	private CustomerTO customer;
 
 	/**
 	 * @return the type
@@ -118,14 +118,14 @@ public class PaymentDTO extends AbstractDTO {
 	/**
 	 * @return the customer
 	 */
-	public CustomerDTO getCustomer() {
+	public CustomerTO getCustomer() {
 		return customer;
 	}
 
 	/**
 	 * @param customer the customer to set
 	 */
-	public void setCustomer(CustomerDTO customer) {
+	public void setCustomer(CustomerTO customer) {
 		this.customer = customer;
 	}
 

@@ -8,55 +8,55 @@ import com.bookstore.financial.model.entity.Customer;
 import com.bookstore.financial.model.entity.Payment;
 import com.bookstore.financial.model.entity.Product;
 import com.bookstore.financial.model.entity.Unit;
-import com.bookstore.financial.ws.dto.PaymentDTO;
+import com.bookstore.financial.ws.dto.PaymentTO;
 import com.bookstore.libraries.util.CollectionUtils;
 import com.bookstore.libraries.util.StringUtils;
 import com.bookstore.libraries.ws.ObjectMapper;
 
 @Dependent
-public class PaymentMapper implements ObjectMapper<Payment, PaymentDTO> {
+public class PaymentMapper implements ObjectMapper<Payment, PaymentTO> {
 
 	@Override
-	public Payment toEntity(PaymentDTO paymentDTO) {
+	public Payment toEntity(PaymentTO paymentTO) {
 		
-		if(paymentDTO == null) {
+		if(paymentTO == null) {
 			return null;
 		}
 		
 		Payment payment = new Payment();
 		
-		payment.setType(paymentDTO.getType());
-		payment.setValue(paymentDTO.getValue());
-		payment.setDate(paymentDTO.getDate());
+		payment.setType(paymentTO.getType());
+		payment.setValue(paymentTO.getValue());
+		payment.setDate(paymentTO.getDate());
 		
-		if(CollectionUtils.isNotEmpty(paymentDTO.getProductCodes())) {
-			
-			payment.setProducts(new ArrayList<>());
-			
-			for(String code : paymentDTO.getProductCodes()) {
-				
-				Product product = new Product();
-				product.setCode(code);
-				
-				payment.getProducts().add(product);
-			}
-		}
+//		if(CollectionUtils.isNotEmpty(paymentTO.getProductCodes())) {
+//			
+//			payment.setProducts(new ArrayList<>());
+//			
+//			for(String code : paymentTO.getProductCodes()) {
+//				
+//				Product product = new Product();
+//				product.setCode(code);
+//				
+//				payment.getProducts().add(product);
+//			}
+//		}
 		
-		if(StringUtils.isNotEmpty(paymentDTO.getUnitCode())) {
+		if(StringUtils.isNotEmpty(paymentTO.getUnitCode())) {
 			
 			Unit unit = new Unit();
-			unit.setCode(paymentDTO.getUnitCode());
+			unit.setCode(paymentTO.getUnitCode());
 			
 			payment.setUnit(unit);
 		}
 		
-		if(paymentDTO.getCustomer() != null) {
+		if(paymentTO.getCustomer() != null) {
 			
 			Customer customer = new Customer();
 			
-			customer.setCpf(paymentDTO.getCustomer().getCpf());
-			customer.setEmail(paymentDTO.getCustomer().getEmail());
-			customer.setName(paymentDTO.getCustomer().getName());
+			customer.setCpf(paymentTO.getCustomer().getCpf());
+			customer.setEmail(paymentTO.getCustomer().getEmail());
+			customer.setName(paymentTO.getCustomer().getName());
 
 			payment.setCustomer(customer);
 		}
@@ -65,7 +65,7 @@ public class PaymentMapper implements ObjectMapper<Payment, PaymentDTO> {
 	}
 
 	@Override
-	public PaymentDTO toDTO(Payment entity) { //TODO
+	public PaymentTO toDTO(Payment entity) { //TODO
 		return null;
 	}
 }
