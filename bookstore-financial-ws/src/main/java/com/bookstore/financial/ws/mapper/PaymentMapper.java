@@ -6,9 +6,11 @@ import javax.enterprise.context.Dependent;
 
 import com.bookstore.financial.model.entity.Customer;
 import com.bookstore.financial.model.entity.Payment;
+import com.bookstore.financial.model.entity.PaymentProduct;
 import com.bookstore.financial.model.entity.Product;
 import com.bookstore.financial.model.entity.Unit;
 import com.bookstore.financial.ws.dto.PaymentTO;
+import com.bookstore.financial.ws.dto.ProductTO;
 import com.bookstore.libraries.util.CollectionUtils;
 import com.bookstore.libraries.util.StringUtils;
 import com.bookstore.libraries.ws.ObjectMapper;
@@ -29,18 +31,23 @@ public class PaymentMapper implements ObjectMapper<Payment, PaymentTO> {
 		payment.setValue(paymentTO.getValue());
 		payment.setDate(paymentTO.getDate());
 		
-//		if(CollectionUtils.isNotEmpty(paymentTO.getProductCodes())) {
-//			
-//			payment.setProducts(new ArrayList<>());
-//			
-//			for(String code : paymentTO.getProductCodes()) {
-//				
-//				Product product = new Product();
-//				product.setCode(code);
-//				
-//				payment.getProducts().add(product);
-//			}
-//		}
+		if(CollectionUtils.isNotEmpty(paymentTO.getProducts())) {
+			
+			payment.setPaymentProducts(new ArrayList<>());
+			
+			for(ProductTO p : paymentTO.getProducts()) {
+				
+				Product product = new Product();
+				product.setCode(p.getCode());
+				
+				PaymentProduct paymentProduct = new PaymentProduct();
+				paymentProduct.setQuantity(p.getQuantity());
+				paymentProduct.setValue(p.getValue());
+				paymentProduct.setProduct(product);
+				
+				payment.getPaymentProducts().add(paymentProduct);
+			}
+		}
 		
 		if(StringUtils.isNotEmpty(paymentTO.getUnitCode())) {
 			

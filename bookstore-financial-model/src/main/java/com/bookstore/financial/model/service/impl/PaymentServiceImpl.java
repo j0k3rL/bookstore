@@ -78,12 +78,12 @@ public class PaymentServiceImpl extends AbstractService implements PaymentServic
 	
 	private void loadPaymentProducts(Payment payment) throws BusinessException {
 
-//		for(int i = 0 ; i < payment.getProducts().size() ; i++) {
-//			
-//			Product product = payment.getProducts().get(i);
-//			product = productService.findByCode(product.getCode());
-//			
-//			payment.getProducts().set(i, product);
-//		}
+		for(int i = 0 ; i < payment.getPaymentProducts().size() ; i++) {
+			
+			Product product = payment.getPaymentProducts().get(i).getProduct();
+			product = productService.findByCode(product.getCode());
+			
+			payment.getPaymentProducts().get(i).setProduct(product);
+		}
 	}
 }

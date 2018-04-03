@@ -1,5 +1,7 @@
 package com.bookstore.financial.model.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -22,6 +25,11 @@ public class PaymentProduct extends AbstractEntity {
 	@Basic(optional = false)
 	@Column(nullable = false)
 	private Integer quantity;
+	
+	@NotNull @Min(value = 0)
+	@Basic(optional = false)
+	@Column(nullable = false, precision = 2)
+	private BigDecimal value;
 	
 	@NotNull @Valid
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -78,9 +86,24 @@ public class PaymentProduct extends AbstractEntity {
 		this.product = product;
 	}
 
+	/**
+	 * @return the value
+	 */
+	public BigDecimal getValue() {
+		return value;
+	}
+
+	/**
+	 * @param value
+	 *            the value to set
+	 */
+	public void setValue(BigDecimal value) {
+		this.value = value;
+	}
+
 	@Override
 	public String toString() {
-		return "PaymentProduct [quantity=" + quantity + ", payment=" + payment + ", product=" + product + ", id=" + id
-				+ "]";
+		return "PaymentProduct [quantity=" + quantity + ", value=" + value + ", payment=" + payment + ", product="
+				+ product + ", id=" + id + "]";
 	}
 }

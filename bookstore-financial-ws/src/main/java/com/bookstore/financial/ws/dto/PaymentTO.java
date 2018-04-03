@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -33,9 +32,8 @@ public class PaymentTO extends AbstractTO {
 	@XmlJavaTypeAdapter(DateTimeAdapter.class)
 	private Calendar date;
 	
-	@XmlElementWrapper(name = "products", required=true)
-	@XmlElement(name="code", required=true)
-	private List<String> productCodes;
+	@XmlElement(required=true)
+	private List<ProductTO> products;
 	
 	@UnitCode
 	@XmlElement(required=true)
@@ -88,20 +86,6 @@ public class PaymentTO extends AbstractTO {
 	}
 
 	/**
-	 * @return the productCodes
-	 */
-	public List<String> getProductCodes() {
-		return productCodes;
-	}
-
-	/**
-	 * @param products the products to set
-	 */
-	public void setProductCodes(List<String> productCodes) {
-		this.productCodes = productCodes;
-	}
-
-	/**
 	 * @return the unitCode
 	 */
 	public String getUnitCode() {
@@ -129,12 +113,23 @@ public class PaymentTO extends AbstractTO {
 		this.customer = customer;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the products
 	 */
+	public List<ProductTO> getProducts() {
+		return products;
+	}
+
+	/**
+	 * @param products the products to set
+	 */
+	public void setProducts(List<ProductTO> products) {
+		this.products = products;
+	}
+
 	@Override
 	public String toString() {
-		return "PaymentDTO [type=" + type + ", value=" + value + ", date=" + date + ", productCodes=" + productCodes
+		return "PaymentTO [type=" + type + ", value=" + value + ", date=" + date + ", products=" + products
 				+ ", unitCode=" + unitCode + ", customer=" + customer + "]";
 	}
 }
