@@ -16,6 +16,7 @@
 		<bookstore.libraries.version>1.0.0-SNAPSHOT</bookstore.libraries.version>
 		<jboss.weld.version>2.3.3.Final</jboss.weld.version>
 		<hibernate.validator.version>5.4.1.Final</hibernate.validator.version>
+		<jasperreports.version>3.5.3</jasperreports.version>
 		<log4j.version>1.2.17</log4j.version>
 		<maven.compiler.plugin>3.7.0</maven.compiler.plugin>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -41,6 +42,12 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate.validator.version}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasperreports.version}</version>
 		</dependency>
 
 		<dependency>
