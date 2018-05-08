@@ -34,13 +34,13 @@ public class PaymentReportGenerator {
 
 	private JRDataSource getDatasouce(Payment payment) {
 
-		List<PaymentReport> paymentProductReports = new ArrayList<>();
+		List<PaymentReport> paymentReports = new ArrayList<>();
 
 		for (PaymentProduct pp : payment.getPaymentProducts()) {
-			paymentProductReports.add(new PaymentReport(pp));
+			paymentReports.add(new PaymentReport(pp));
 		}
 
-		return new JRBeanCollectionDataSource(paymentProductReports);
+		return new JRBeanCollectionDataSource(paymentReports);
 	}
 
 	private Map<String, Object> getParameters(Payment payment) {
