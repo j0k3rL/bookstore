@@ -16,7 +16,7 @@ import com.bookstore.libraries.ws.ObjectMapper;
 public class PaymentWS extends AbstractWS {
 
 	private static final String SCHEMA_PATH = "xsd/bookstore-financial-ws.xsd";
-
+	
 	@Inject
 	private PaymentService paymentService;
 	
